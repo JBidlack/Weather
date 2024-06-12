@@ -49,14 +49,14 @@ goButton = tk.Button(frame1,
                      font=('TKMenuFont', 16),
                      fg="white",
                      activebackground="#3d5aee",
-                     command=API.call(input.get()))
+                     command=lambda: API.call(input.get()))
 
 
 
 goButton.place(relx=0.5,
             rely=0.55,
             anchor='n')
-goButton.pack()
+
 
 
 root.mainloop()
