@@ -42,6 +42,16 @@ input.place(relx=0.5,
             rely=0.4,
             anchor='n')
 
+weatherInfo = tk.Label(frame1, 
+                       text="", 
+                       bg=bgColor, 
+                       fg='white', 
+                       font=('TKMenuFont', 16))
+
+def getWeather():
+    result = API.call(input.get())
+    weatherInfo.config(text=result)
+
 goButton = tk.Button(frame1, 
                      text="Get Weather!", 
                      cursor="hand2", 
@@ -49,14 +59,14 @@ goButton = tk.Button(frame1,
                      font=('TKMenuFont', 16),
                      fg="white",
                      activebackground="#3d5aee",
-                     command=lambda: API.call(input.get()))
-
-
+                     command=getWeather)
 
 goButton.place(relx=0.5,
             rely=0.55,
             anchor='n')
 
-
+weatherInfo.place(relx=0.5,
+                  rely=0.65,
+                  anchor='n')
 
 root.mainloop()
