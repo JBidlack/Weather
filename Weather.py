@@ -42,21 +42,36 @@ input.place(relx=0.5,
             rely=0.4,
             anchor='n')
 
-weatherInfo = tk.Label(frame1, 
+weatherInfoCity = tk.Label(frame1, 
                        text="", 
                        bg=bgColor, 
                        fg='white', 
                        font=('TKMenuFont', 16))
 
+weatherInfo = tk.Label(frame1, 
+                       text="", 
+                       bg=bgColor, 
+                       fg='white', 
+                       font=('TKMenuFont', 14))
+
 def getWeather():
     result = API.call(input.get())
-    weatherInfo.config(text=result)
+
+    loc = result['name']
+    desc = result['weather'][0]['description']
+    temp = result['main']['temp']
+
+    loc = loc.title()
+    desc = desc.title()
+
+    weatherInfoCity.config(text=loc)
+    weatherInfo.config(text='Current Temperature: ' + str(temp) + 'F' + '\n' + desc)
 
 goButton = tk.Button(frame1, 
                      text="Get Weather!", 
                      cursor="hand2", 
                      bg="#3d5a66", 
-                     font=('TKMenuFont', 16),
+                     font=('TKHeaderFont', 16),
                      fg="white",
                      activebackground="#3d5aee",
                      command=getWeather)
@@ -65,8 +80,12 @@ goButton.place(relx=0.5,
             rely=0.55,
             anchor='n')
 
-weatherInfo.place(relx=0.5,
+weatherInfoCity.place(relx=0.5,
                   rely=0.65,
+                  anchor='n')
+
+weatherInfo.place(relx=0.5,
+                  rely=0.70,
                   anchor='n')
 
 root.mainloop()
