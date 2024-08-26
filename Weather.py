@@ -3,11 +3,10 @@ from tkinter import ttk
 import API
 from PIL import ImageTk
 
+#Creation of the GUI frame. Dimensions based on rough mobile device specs
 root = tk.Tk()
 bgColor = "#3d6466"
-
 root.title("Weather Checker App")
-# root.eval("tk::PlaceWindow . center")
 x=root.winfo_screenwidth()//2
 y=int(root.winfo_screenheight() *0.05)
 
@@ -17,6 +16,7 @@ frame1 = tk.Frame(root, width=430, height=932, bg=bgColor)
 frame1.grid(row=1, column=0)
 frame1.pack_propagate(False)
 
+#Set "logo" image. This was made roughly and may be replaced later
 logoImage = ImageTk.PhotoImage(file="logo.png")
 
 logoWidget = tk.Label(frame1, image=logoImage, bg=bgColor)
@@ -25,8 +25,8 @@ logoWidget.place(relx=0.5,
                  anchor='n'
                  )
 logoWidget.image = logoImage
-# logoWidget.pack()
 
+#Remainder of the tk.* set the various inputs and text
 textLabel =  tk.Label(frame1, 
          text="Enter Your Zipcode:", 
          bg=bgColor, 
@@ -54,6 +54,9 @@ weatherInfo = tk.Label(frame1,
                        fg='white', 
                        font=('TKMenuFont', 14))
 
+# getWeather function calls the API python file and the call function within it, passing in the 
+# input value which should be the zip code. Upon successful call, will set the weatherInfo value 
+# to that areas weather forcast 
 def getWeather():
     result = API.call(input.get())
 
@@ -67,6 +70,7 @@ def getWeather():
     weatherInfoCity.config(text=loc)
     weatherInfo.config(text='Current Temperature: ' + str(temp) + 'F' + '\n' + desc)
 
+# setting the button, and functionality on click 
 goButton = tk.Button(frame1, 
                      text="Get Weather!", 
                      cursor="hand2", 

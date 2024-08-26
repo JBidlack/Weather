@@ -1,1 +1,1 @@
-This project is a simple weather app using connectivity to the openweathermap.org API to showcase ability to work with an API and the data returned.
+This project is a simple weather app using connectivity to the openweathermap.org API to showcase ability to work with an API and the data returned. The API key is stored locally in a .env file and as such will not work as is for security purpposes.
